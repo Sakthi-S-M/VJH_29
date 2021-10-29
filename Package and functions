@@ -1,0 +1,21 @@
+import gender_guesser.detector as gender
+from sklearn.model_selection import StratifiedKFold,train_test_split 
+from sklearn.model_selection import GridSearchCV
+from sklearn.metrics import accuracy_score,mean_absolute_error 
+from sklearn.model_selection import learning_curve
+from sklearn.metrics import confusion_matrix
+"""Using RandomForestClassifier"""
+from sklearn.ensemble import RandomForestClassifier
+def reading_datasets():
+    real_user=pd.read_csv(r"C:\Users\91754\Downloads\users.csv")
+    fake_user=pd.read_csv(r"C:\Users\91754\Downloads\fusers.csv")
+    x=pd.concat([real_user,fake_user])
+    y=len(fake_user)*[0]+len(real_users)*[1]
+    return x,y
+def predict_gender(name):
+    a=gender.Detector(case_sensitive=True)
+    firstname=str(name).split(' ')[0]
+    sex=a.get_gender(u"{}".format(firstname))
+    sex_code_dict={'female':-2,'Mostly_female':-1,'unknown':0,'andy':0,'Mostly_male':1,'male':2}
+    code=sex_code_dict[sex]
+    return code
